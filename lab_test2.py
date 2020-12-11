@@ -14,15 +14,13 @@ class Document:
     Class Document receives the file name at initialisation.
     """
 
+    def file_writing(self):
+        file_writing = {}
+
     def __init__(self, file_name):
         self.characters = []
         self.cursor = 0
         self.filename = file_name
-        try:
-            fo = open(file_name, "r")
-        except Exception as e:
-            file_writing = False
-            print("Caught this error: %s" % e.__class__.__name__)
 
     def insert(self, character):
         """
