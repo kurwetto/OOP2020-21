@@ -6,7 +6,7 @@
 
 # Lab test 2
 # Michal Korneluk C19434762
-# Tu 858
+# TU 858
 
 class Document:
     """
@@ -46,7 +46,9 @@ class Document:
         Arguments: none
         Returns: none
         """
-        try: # try and exception
+
+        #Try and exception for def delete
+        try:
             del self.characters[self.cursor]
         except Exception as e:
             print("Caught this error: %s" % e.__class__.__name__)
@@ -58,7 +60,9 @@ class Document:
         Arguments: none
         Returns: none
         """
-        try: # try and exception
+
+        #Try and Exception for def save
+        try:
             fo = open(self.filename, "w", encoding='utf-8')
             fo.write(''.join(self.characters))
             print(f"Your file {self.filename} has "f"been created.\nPlease check.\n")
@@ -90,22 +94,38 @@ class Document:
 
         Returns: none
         """
-        max_value = 12
-        if steps > max_value:    # if statement for max value & steps
+        maximum_value = 12
+        if steps > maximum_value:    # if statement for maximum value & steps
             print("Number too big")
         else:
             self.cursor -= steps
 
+# getters and setters
 
+@property
+def get_characters(self):
+    return self.__characters
+
+@property
+def get_cursor(self):
+    return self.__cursor
+
+
+def set_characters(self, a):
+    self.__characters = a
+
+
+def set_cursor(self, a):
+    self.__cursor = a
 
 # initialising an object and using the class
 doc = Document("lab_t2.txt")
 characters = 'fake mews'
-max_value = 3
+maximum_value = 3 # to make if statement work
 
 for letter in characters:
     doc.insert(letter)
-    max_value += 1
+    maximum_value += 1 # increment ++
 
 doc.backward(18)
 doc.delete()
