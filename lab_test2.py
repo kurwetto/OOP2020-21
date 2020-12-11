@@ -46,7 +46,7 @@ class Document:
         Arguments: none
         Returns: none
         """
-        try:
+        try: # try and exception
             del self.characters[self.cursor]
         except Exception as e:
             print("Caught this error: %s" % e.__class__.__name__)
@@ -58,11 +58,12 @@ class Document:
         Arguments: none
         Returns: none
         """
-        with open(self.filename, 'w') as f:
-            f.write(''.join(self.characters))
-
-        print(f"Your file {self.filename} has "
-              f"been created.\nPlease check.\n")
+        try: # try and exception
+            fo = open(self.filename, "w", encoding='utf-8')
+            fo.write(''.join(self.characters))
+            print(f"Your file {self.filename} has "f"been created.\nPlease check.\n")
+        except Exception as e:
+            print("Caught this error: %s" % e.__class__.__name__)
 
     def forward(self, steps):
         """
@@ -90,8 +91,8 @@ class Document:
         Returns: none
         """
         max_value = 12
-        if steps > max_value:
-            print("The number is too big")
+        if steps > max_value:    # if statement for max value & steps
+            print("Number too big")
         else:
             self.cursor -= steps
 
@@ -105,7 +106,6 @@ max_value = 3
 for letter in characters:
     doc.insert(letter)
     max_value += 1
-    print(max_value)
 
 doc.backward(18)
 doc.delete()
