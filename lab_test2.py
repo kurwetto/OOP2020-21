@@ -4,6 +4,10 @@
 # B. Schoen-Phelan
 # 11-12-2020
 
+# Lab test 2
+# Michal Korneluk C19434762
+# Tu 858
+
 class Document:
     """
     Class to handle file management for file writing.
@@ -35,6 +39,8 @@ class Document:
         self.characters.insert(self.cursor, character)
         self.cursor += 1
 
+
+
     def delete(self):
         """
         Method deletes a character from the current
@@ -42,7 +48,10 @@ class Document:
         Arguments: none
         Returns: none
         """
-        del self.characters[self.cursor]
+        try:
+            del self.characters[self.cursor]
+        except Exception as e:
+            print("Caught this error: %s" % e.__class__.__name__)
 
     def save(self):
         """
@@ -82,17 +91,25 @@ class Document:
 
         Returns: none
         """
-        self.cursor -= steps
+        max_value = 12
+        if steps > max_value:
+            print("The number is too big")
+        else:
+            self.cursor -= steps
+
 
 
 # initialising an object and using the class
 doc = Document("lab_t2.txt")
 characters = 'fake mews'
+max_value = 3
 
 for letter in characters:
     doc.insert(letter)
+    max_value += 1
+    print(max_value)
 
-doc.backward(4)
+doc.backward(18)
 doc.delete()
 doc.insert('n')
 doc.save()
